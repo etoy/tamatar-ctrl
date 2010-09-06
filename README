@@ -1,0 +1,29 @@
+# TAMATAR CTRL
+Web-frontend to control and monitor the Tamatar. 
+Tamatar-ctrl is implemented as a django webapplication 
+running together with lighttpd via fastcgi. Currently,
+a dedicated beagleboard hosting Tamatar-ctrl is intended
+to run on the tamatar network with a static ip, allowing 
+for easier maintainance of the Tamatar during an exhibition
+
+# Requirements
+- Python 2.6
+- lighttpd with fastcgi and rewrite modules
+- django 
+
+# API
+- / 
+ Web-frontend
+ 
+- /submitstatus/
+ Request url for the tamatar to submit their information.
+ The following request parameters are currently accepted:
+ - tamatarId 
+ - ip 
+ - state (play,sleep,man)
+ - power (int value for the remaining battery power)
+ - uptime 
+ 
+- /status/
+ Retrieve status information as JSON
+ 
