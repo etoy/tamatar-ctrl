@@ -10,14 +10,13 @@
 <div id="content">
 <h1 class="rechts"><a href="http://tamatar-ctrl/"><img src="/media/images/m221e-logo2-o.gif" alt="" border="0" /></a></h1>	
 <h1>Tamatar Control  </h1>
-<h4>Robots need love too
-</h4>
+<h2>Status</h2>
 <table id="status" border="0">
 	<thead>
 	<tr>
 		<th>id</th>
 		<th>ip</th>
-		<th>status</th>
+		<th>mode</th>
 		<th>power</th>
 		<th>uptime</th>
 		<th>last ping</th>
@@ -28,6 +27,55 @@
 	</tbody>
 </table>
 
+<h2>Send command</h2>
+<form id="commandform" name="commandform" onsubmit="return false;">
+<table>
+<thead>
+	<tr>
+		<th>tamatar</th>
+		<th>mode</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="even">
+	<td>
+		<select name="tamatar">
+			<option value="0">select tamatar</option>
+			<option value="1">Tamatar 01</option>
+			<option value="2">Tamatar 02</option>
+			<option value="3">Tamatar 03</option>
+			<option value="4">Tamatar 04</option>
+			<option value="5">Tamatar 05</option>
+			<option value="6">Tamatar 06</option>
+			<option value="7">Tamatar 07</option>
+			<option value="8">Tamatar 08</option>
+			<option value="9">Tamatar 09</option>
+			<option value="10">Tamatar 10</option>
+	</select>	
+	</td>
+	<td>
+		<select name="mode">
+			<option value="">select mode</option>
+			<option value="mplay">play</option>
+			<option value="msleep">sleep</option>
+			<option value="msound">sound only</option>
+		</select>
+	</td>
+	<td></td>
+</tr>
+	<tr class="odd">
+		<td> 
+			<input class="formbutton" type="button" name="cmdbutton" value="Send" onclick="submitCommand()"/>
+		</td>
+		<td colspan="2">
+			<div id="resp"></div>
+		</td>
+	</tr>
+</tbody>
+
+</table>
+</form>
 </div>
 </body>
 </html>

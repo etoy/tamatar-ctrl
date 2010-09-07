@@ -32,6 +32,66 @@ function updateStatus(resp) {
 	}
 }
 
+function resetForm() {
+	form = $('commandform');
+	var tinput = form['tamatar'];
+	tinput.options.selectedIndex = 0;
+	var cinput = form['mode'];
+	cinput.options.selectedIndex = 0;	
+	var info = $('resp');
+	info.update('');
+}
+
+
+function submitCommand() {
+	var form = $('commandform');
+	var info = $('resp');	
+	
+	var tInput = form['tamatar'];
+	if (!tInput) {
+		return false;
+	}
+
+	var tVal = $F(tInput);
+	if (tVal <= 0) {
+		return false;
+	} 
+
+	var cInput = form['mode'];
+	if (!cInput) {
+		return false;
+	}
+
+	var cVal = $F(cInput);
+	if (cVal == '') {
+		return false;
+	}
+	
+	info.update('sending ...');
+	new Ajax.Request(
+		'/sendcmd/?tamatar='+tVal+'&cmd='+cVal,
+		{
+			method: 'get',
+			onSuccess: function(resp) {
+				if (resp.responseJSON && resp.responseJSON.success == 1) {
+					info.update('success!');	
+				} else {
+					info.update('failed!');
+				}
+				resetForm();	
+			},
+			onFailure: function(resp) {
+				info.update('failed!');
+				resetForm();	
+			}
+		}
+		
+	);
+
+
+}
+
+
 window.onload = function() {
     var p = new Ajax.PeriodicalUpdater('foo', '/status/',
 	{

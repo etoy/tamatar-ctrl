@@ -5,6 +5,33 @@ from django.conf import settings
 import simplejson
 import datetime
 import glob
+import socket
+
+def sendcommand(request, args):
+    tamatarId=0
+    cmd=''
+    data={}
+    if 'tamatar' in request.GET:
+        tamatarId = int(request.GET['tamatar'])
+    if 'cmd' in request.GET:
+        cmd = request.GET['cmd']
+
+    if tamatarId is not 0 and len(cmd) > 0:
+        dest = ('<broadcast>', 22044)
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            msg = "c:0:%d:%s" % (tamatarId, cmd) 
+            sock.sendto(msg, dest)
+            sock.close();
+            data['cmd'] = msg
+            data['tamatar'] = tamatarId
+            data['success']=1
+        except:
+            data['success']=0
+
+    return HttpResponse(simplejson.dumps(data), mimetype='application/json')
+
 
 def submitstatus(request, args):
     s = ''
