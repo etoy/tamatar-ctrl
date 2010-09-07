@@ -18,12 +18,16 @@ for easier maintainance of the Tamatar during an exhibition
 - /submitstatus/
  Request url for the tamatar to submit their information.
  The following request parameters are currently accepted:
- - tamatarId 
- - ip 
- - state (play,sleep,man)
- - power (int value for the remaining battery power)
- - uptime 
+ - tamatarId (int, tamatar-id) 
+ - ip (string, ip) 
+ - state (string, (play,sleep,man))
+ - power (int, value for the remaining battery power)
+ - uptime (int) 
  
 - /status/
  Retrieve status information as JSON
  
+- /sendcmd/
+ Send command to a Tamatar. Parameters:
+ - tamatar (int, tamatar-id)
+ - cmd (string, command)
