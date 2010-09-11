@@ -27,7 +27,7 @@ for easier maintainance of the Tamatar during an exhibition
 - /status/
  Retrieve status information as JSON
  
-- /sendcmd/
+- /cmd/
  Send command to a Tamatar. Parameters:
  - tamatar (int, tamatar-id)
  - cmd (string, command)
