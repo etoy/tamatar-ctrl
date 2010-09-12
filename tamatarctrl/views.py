@@ -99,3 +99,7 @@ def index(request):
 	t = get_template('index.html')
 	html = t.render(Context({}))
 	return HttpResponse(html)
+def manual(request):
+    t = get_template('manual.html')
+    html = t.render(Context({}))
+    return HttpResponse(html)
